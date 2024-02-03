@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <%- include('../partials/head'); %>    
+</head>
+
+<body class="container">
+
+    <header class="container">
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="container">
+        <!-- <div class="jumbotron"></div> -->
+        <div class="container-sm border">
+            <div class="form-group">
+                <h3 style="text-align: center;">Login</h3>
+                <form action="/login" method="post">
+                    <div class="form-group">
+                        <div><label for="username" >Usuário:</label></div>
+                        <div><input type="text" id="username" name="username" required class="form-control"></div>
+                    </div>
+                    <div class="form-group">
+                        <div><label for="password">Senha:</label></div>
+                        <div> <input type="password" id="password" name="password" required class="form-control"></div>
+                    </div>
+                    <div><button type="submit" class="form-control btn btn-dark">ENTRAR</button></div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="container">
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>
