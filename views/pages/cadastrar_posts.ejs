@@ -3,6 +3,9 @@
 
 <head>
     <%- include('../partials/head'); %>
+    <% if(req.session.loggedin) { %>
+    <%- include('../partials/menu_dashboard'); %>
+    <% } %>
 </head>
 
 <body class="container">
