@@ -87,14 +87,16 @@ app.post('/login', (req, res) => {
 // Rota para processar o formulário de caastro depostagem
 app.post('/cadastrar_posts', (req, res) => {
     const { titulo, conteudo } = req.body;
+    const autor = "admin";
+    const datapostagem = new Date();
 
     // const query = 'SELECT * FROM users WHERE username = ? AND password = SHA1(?)';
-    const query = 'INSERT INTO posts (titulo, conteudo) VALUES (?,?)';
+    const query = 'INSERT INTO posts (titulo, conteudo, autor, datapostagem) VALUES (?, ?, ?, ?)';
 
-    db.query(query, [titulo, conteudo], (err, results) => {
+    db.query(query, [titulo, conteudo, autor, datapostagem], (err, results) => {
         if (err) throw err;
-
-        if (results.length > 0) {
+        console.log(`Rotina cadastrar posts: ${JSON.stringify(results)}`);
+        if (results.affectedRows > 0) {
             console.log('Cadastro de postagem OK')
             res.redirect('/dashboard');
         } else {
@@ -105,7 +107,7 @@ app.post('/cadastrar_posts', (req, res) => {
 });
 
 // const query = 'INSERT INTO users (username, password) VALUES (?, SHA1(?))';
-// console.log(`POST /CADASTAR -> query -> ${query}`);
+// console.log(`POST /CADASTRAR -> query -> ${query}`);
 // db.query(query, [username, password], (err, results) => {
 //     console.log(results);
 //     //console.log(`POST /CADASTAR -> results -> ${results}`);
@@ -125,7 +127,11 @@ app.post('/cadastrar_posts', (req, res) => {
 // Rota para a página cadastro do post
 app.get('/cadastrar_posts', (req, res) => {
     // Quando for renderizar páginas pelo EJS, passe parametros para ele em forma de JSON
-    res.render('pages/cadastrar_posts', { req: req });
+    if (req.session.loggedin) {
+        res.render('pages/cadastrar_posts', { req: req });
+    } else {
+        res.redirect('/login_failed');
+    }
 });
 
 // Rotas para cadastrar
@@ -152,10 +158,10 @@ app.post('/cadastrar', (req, res) => {
         } else {
             // Cadastra o usuário caso não exista
             const query = 'INSERT INTO users (username, password) VALUES (?, SHA1(?))';
-            console.log(`POST /CADASTAR -> query -> ${query}`);
+            console.log(`POST /CADASTRAR -> query -> ${query}`);
             db.query(query, [username, password], (err, results) => {
                 console.log(results);
-                //console.log(`POST /CADASTAR -> results -> ${results}`);
+                //console.log(`POST /CADASTRAR -> results -> ${results}`);
 
                 if (err) {
                     console.log(`ERRO NO CADASTRO: ${err}`);
