@@ -61,7 +61,13 @@ app.get('/login', (req, res) => {
 
 
 app.get('/about', (req, res) => {
-    res.render('pages/about', { req: req })
+    const dados = [
+        { titulo: "Post 1", conteudo: "Conteúdo post 1" },
+        { titulo: "Post 2", conteudo: "Conteúdo post 2" },
+        { titulo: "Post 3", conteudo: "Conteúdo post 3" }
+    ];
+
+    res.render('pages/about', { req: req, posts: dados });
 });
 
 // Rota para processar o formulário de login

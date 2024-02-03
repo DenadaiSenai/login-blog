@@ -3,15 +3,15 @@
 
 <head>
     <%- include('../partials/head'); %>
-    <% if(req.session.loggedin) { %>
-    <%- include('../partials/menu_dashboard'); %>
-    <% } %>
 </head>
 
 <body class="container">
 
     <header class="container">
         <%- include('../partials/header'); %>
+        <% if(req.session.loggedin) { %>
+        <%- include('../partials/menu_dashboard'); %>
+        <% } %>
     </header>
     <main class="container">
         <!-- <div class="jumbotron"></div> -->
