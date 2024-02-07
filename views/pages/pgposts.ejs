@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <%- include('../partials/head'); %>
+
+    
+</head>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+        <% if(req.session.loggedin) { %>
+        <%- include('../partials/menu_dashboard'); %>
+        <% } %>
+    </header>
+
+    <main>
+        <%- include('../partials/posts'); %>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
