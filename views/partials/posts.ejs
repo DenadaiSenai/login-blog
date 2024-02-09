@@ -2,10 +2,11 @@
     <h1>Postagens</h1>
     <div class="cardPosts">
         <% posts.forEach(post => { %>
-            <div class="cardBody">
-                <h5 class="cardTitle"><%= post.titulo %></h5>
-                <p class="cardText"><%= post.conteudo %></p>
-            </div>
+        <div class="cardBody">
+            <h5 class="cardTitle"><%= post.titulo %><span class="btn"><%= post.autor %>
+            </span><span class="btn"><%= new Date(post.datapostagem) %></span></h5>
+            <p class="cardText"><%- post.conteudo %></p>
+        </div>
         <% }); %>
     </div>
 </div>

@@ -78,15 +78,12 @@ app.get('/posts', (req, res) => {
 // Rota para processar o formulário de login
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
-
     const query = 'SELECT * FROM users WHERE username = ? AND password = SHA1(?)';
-
     db.query(query, [username, password], (err, results) => {
         if (err) throw err;
-
         if (results.length > 0) {
             req.session.loggedin = true;
-            req.session.username = username;
+            req.session.username = username; 
             res.redirect('/dashboard');
         } else {
             // res.send('Credenciais incorretas. <a href="/">Tente novamente</a>');
@@ -95,10 +92,23 @@ app.post('/login', (req, res) => {
     });
 });
 
+// const moment = require('moment'); // Se estiver usando npm
+
+// const dataAtual = moment();
+
+// // Formato padrão
+// const formatoPadrao = dataAtual.format();
+// console.log("Formato padrão:", formatoPadrao);
+
+// // Formato personalizado
+// const formatoPersonalizado = dataAtual.format('dddd, MMMM Do YYYY, h:mm:ss a');
+// console.log("Formato personalizado:", formatoPersonalizado);
+
+
 // Rota para processar o formulário de caastro depostagem
 app.post('/cadastrar_posts', (req, res) => {
     const { titulo, conteudo } = req.body;
-    const autor = "admin";
+    const autor = req.session.username;
     const datapostagem = new Date();
 
     // const query = 'SELECT * FROM users WHERE username = ? AND password = SHA1(?)';

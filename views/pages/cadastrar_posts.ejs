@@ -13,6 +13,7 @@
         <%- include('../partials/menu_dashboard'); %>
         <% } %>
     </header>
+
     <main class="container">
         <!-- <div class="jumbotron"></div> -->
         <div class="container-sm border border-danger rounded-lg">
@@ -21,11 +22,12 @@
                 <form action="/cadastrar_posts" method="post">
                     <div class="form-group">
                         <div><label for="titulo">Título da postagem</label></div>
-                        <div><input type="text" id="titulo" name="titulo" required class="form-control"></div>
+                        <div><input type="text" id="titulo" name="titulo" required class="form-control" value="<%= new Date();%>"></div>
                     </div>
                     <div class="form-group">
                         <div><label for="conteudo">Conteúdo da postagem</label></div>
-                        <div> <input type="text" id="conteudo" name="conteudo" required class="form-control"></div>
+                        <!-- <div> <input type="text" id="conteudo" name="conteudo" required class="form-control"></div> -->
+                        <div><textarea id="conteudo" name="conteudo" rows="10" class="form-control">Teste de postagem</textarea></div>
                     </div>
                     <!-- TODO: Implementar um campo para verificar na página se as senhas coincidem -->
                     <div><button type="submit" class="form-control btn btn-dark">Inserir nova postagem</button></div>
