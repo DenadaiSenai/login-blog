@@ -107,6 +107,7 @@ app.post('/login', (req, res) => {
 
 // Rota para processar o formulário de caastro depostagem
 app.post('/cadastrar_posts', (req, res) => {
+    console.log(`${req.session.username}`);
     const { titulo, conteudo } = req.body;
     const autor = req.session.username;
     const datapostagem = new Date();

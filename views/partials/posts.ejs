@@ -4,7 +4,7 @@
         <% posts.forEach(post => { %>
         <div class="cardBody">
             <h5 class="cardTitle"><%= post.titulo %><span class="btn"><%= post.autor %>
-            </span><span class="btn"><%= new Date(post.datapostagem) %></span></h5>
+            </span><span class="btn"><%= post.datapostagem %></span></h5>
             <p class="cardText"><%- post.conteudo %></p>
         </div>
         <% }); %>

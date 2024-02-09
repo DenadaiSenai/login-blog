@@ -18,7 +18,7 @@
                 <p>
                     <%= req.session.username %> você está em seu perfil.
                 </p>
-                <p>Se quiser faça <a href="/logout">logout</a> ou navegue em suas opções.</p>
+                <%- include('../partials/users_table'); %>
             </div>
         </div>
     </main>
