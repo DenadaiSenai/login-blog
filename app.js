@@ -31,7 +31,7 @@ app.use(
 
 // Configuração de pastas com aquivos estáticos
 //app.use('/img', express.static(__dirname + '/img'))
-app.use('/', express.static(__dirname + '/static'));
+app.use('/static', express.static(__dirname + '/static'));
 
 // Engine do Express para processar o EJS (templates)
 // Lembre-se que para uso do EJS uma pasta (diretório) 'views', precisa existir na raiz do projeto.
@@ -60,20 +60,31 @@ app.get('/login', (req, res) => {
     res.render('pages/login', { req: req });
 });
 
-
 app.get('/about', (req, res) => {
     res.render('pages/about', { req: req });
 });
 
 app.get('/posts', (req, res) => {
-   
     const query = 'SELECT * FROM posts;'
-
     db.query(query, [], (err, results) => {
         if (err) throw err;
         res.render('pages/pgposts', { req: req, posts: results });
     });
 });
+
+app.get('/post_delete/:id', (req, res) => {
+    //const id = req.params.id;
+    const query = 'DELETE FROM posts WHERE id = ?'
+
+    console.log(`${JSON.stringify(req.body)}`)
+    db.query(query, [req.params.id], (err, results) => {
+        if (err) throw err;
+        console.log(`${JSON.stringify(results)}`);
+
+        res.redirect('/');
+    });
+});
+
 
 // Rota para processar o formulário de login
 app.post('/login', (req, res) => {
@@ -83,8 +94,8 @@ app.post('/login', (req, res) => {
         if (err) throw err;
         if (results.length > 0) {
             req.session.loggedin = true;
-            req.session.username = username; 
-            res.redirect('/dashboard');
+            req.session.username = username;
+            res.redirect('/posts');
         } else {
             // res.send('Credenciais incorretas. <a href="/">Tente novamente</a>');
             res.redirect('/login_failed');
@@ -244,3 +255,31 @@ app.listen(3000, () => {
     console.log('----Login (MySQL version)-----')
     console.log('Servidor rodando na porta 3000');
 });
+
+app.get('/edit/:id', (req, res) => {
+    const postId = req.params.id;
+
+    const query = 'SELECT * FROM posts WHERE id = ?';
+
+    db.query(query, [postId], (err, results) => {
+        if (err) throw err;
+        if (results.length > 0) {
+            res.render('pages/editar', { req: req, post: results[0] })
+        } else {
+            res.redirect('/');
+        }
+    })
+});
+
+app.post('/edit/:id', (req, res) => {
+    const postId = req.params.id;
+    const { titulo, conteudo } = req.body;
+
+    const query = 'UPDATE posts SET titulo = ?, conteudo = ? WHERE id = ?';
+
+    db.query(query, [titulo, conteudo, postId], (err, results) => {
+        if (err) throw err;
+
+        res.redirect('/');
+    })
+})

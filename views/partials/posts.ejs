@@ -1,11 +1,18 @@
 <div class="containerPosts">
-    <h1>Postagens</h1>
+    <div class="container"><h1><span class="btn btn-info border" style="margin: 5px;"><%= posts.length %></span>Postagens</h1></div>    
     <div class="cardPosts">
         <% posts.forEach(post => { %>
         <div class="cardBody">
-            <h5 class="cardTitle"><%= post.titulo %><span class="btn"><%= post.autor %>
-            </span><span class="btn"><%= post.datapostagem %></span></h5>
+            <h5 class="cardTitle"><%= post.titulo %> </h5>
+            <span class="btn"><%= post.autor %></span>
+            <span class="btn"><%= post.datapostagem %></span>
             <p class="cardText"><%- post.conteudo %></p>
+            <% if (req.session.loggedin && req.session.username===post.autor) { %>
+            <div>
+                <a href="/post_delete/<%= post.id %>" class="btn btn-danger">Apagar</a>
+                <a href="/edit/<%= post.id %>" class="btn btn-success">Editar</a>
+            </div>
+            <% } %>
         </div>
         <% }); %>
     </div>
