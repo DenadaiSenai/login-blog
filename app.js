@@ -4,11 +4,14 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const app = express();
 
+// Porta do servidor HTTP (nodejs)
+const PORT = 3000;
+
 // Configurar a conexão com o banco de dados MySQL
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'phpmyadmin',
-    password: '123456789',
+    password: 'aluno',
     database: 'mydb',
 });
 
@@ -19,6 +22,7 @@ db.connect((err) => {
     }
     console.log('Conexão com o banco de dados MySQL estabelecida.');
 });
+
 
 // Configurar a sessão
 app.use(
@@ -37,6 +41,9 @@ app.use('/static', express.static(__dirname + '/static'));
 // Lembre-se que para uso do EJS uma pasta (diretório) 'views', precisa existir na raiz do projeto.
 // E que todos os EJS serão processados a partir desta pasta
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
 
 // Configurar EJS como o motor de visualização
 app.set('view engine', 'ejs');
@@ -139,24 +146,6 @@ app.post('/cadastrar_posts', (req, res) => {
     });
 });
 
-// const query = 'INSERT INTO users (username, password) VALUES (?, SHA1(?))';
-// console.log(`POST /CADASTRAR -> query -> ${query}`);
-// db.query(query, [username, password], (err, results) => {
-//     console.log(results);
-//     //console.log(`POST /CADASTAR -> results -> ${results}`);
-
-//     if (err) {
-//         console.log(`ERRO NO CADASTRO: ${err}`);
-//         throw err;
-//     }
-//     if (results.affectedRows > 0) {
-//         req.session.loggedin = true;
-//         req.session.username = username;
-//         res.redirect('/register_ok');
-//     }
-// });
-
-
 // Rota para a página cadastro do post
 app.get('/cadastrar_posts', (req, res) => {
     // Quando for renderizar páginas pelo EJS, passe parametros para ele em forma de JSON
@@ -250,10 +239,15 @@ app.get('/teste', (req, res) => {
     res.render('pages/teste', { req: req });
 });
 
+// Middleware para capturar rotas não existentes
+app.use('*', (req, res) => {
+    // Envia uma resposta de erro 404
+    res.status(404).render('pages/404', {req: req});
+});
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('----Login (MySQL version)-----')
-    console.log('Servidor rodando na porta 3000');
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
 
 app.get('/edit/:id', (req, res) => {
