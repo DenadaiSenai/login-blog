@@ -239,17 +239,6 @@ app.get('/teste', (req, res) => {
     res.render('pages/teste', { req: req });
 });
 
-// Middleware para capturar rotas não existentes
-app.use('*', (req, res) => {
-    // Envia uma resposta de erro 404
-    res.status(404).render('pages/404', {req: req});
-});
-
-app.listen(PORT, () => {
-    console.log('----Login (MySQL version)-----')
-    console.log(`Servidor rodando na porta ${PORT}`);
-});
-
 app.get('/edit/:id', (req, res) => {
     const postId = req.params.id;
 
@@ -277,3 +266,16 @@ app.post('/edit/:id', (req, res) => {
         res.redirect('/');
     })
 })
+
+
+// Middleware para capturar rotas não existentes
+app.use('*', (req, res) => {
+    // Envia uma resposta de erro 404
+    res.status(404).render('pages/404', {req: req});
+});
+
+app.listen(PORT, () => {
+    console.log('----Login (MySQL version)-----')
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
+
