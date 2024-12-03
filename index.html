@@ -1,9 +1,223 @@
-<html>
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* "asteristico" seleciona todos os elementos */
+        * {
+            margin: 0 auto;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            /* border: 1px solid black; */
+        }
+
+        header,
+        footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            border-top: 1px dashed black;
+            padding: 20px;
+            box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+            text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+        main {
+            margin: 30px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            border: 1px solid black;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        /* Classe principal */
+        .conteiner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Classe card - define as caracteristicas do card */
+        .card {
+            width: 10rem;
+            height: 20em;
+            background-color: rgba(112, 87, 87, 0.268);
+            margin: 10px;
+            border-radius: 20px;
+            box-shadow: 2px 2px 30px rgba(14, 82, 68, 0.681);
+            min-width: 200px;
+            overflow: hidden;
+            /* padding: 5px; */
+        }
+
+        /* Classe image - define as caracteristicas do conteiner da imagem */
+        .image {
+            height: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Classe image - define as caracteristicas da tag imagem */
+        .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        /* Classe content - define as caracteristicas do conteiner do conteudo */
+        .content {
+            /* width: 30em; */
+            height: 30%;
+            /* background-color: blue; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            margin: 10px;
+        }
+
+        /* Classe content - define as caracteristicas do conteudo */
+        .content p {
+            font-size: 24px;
+            text-align: center;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+            border-radius: 4px;
+            padding: 4px;
+            background-color: rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Classe content - define as caracteristicas do parágrafo do conteudo, ao passar o mouse */
+        .content p:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Classe actions - define as caracteristicas do conteiner das ações */
+        .actions {
+            width: 100%;
+            /* height: 100%; */
+            background-color: rgba(255, 255, 0, 0.376);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* padding: 20px; */
+        }
+
+        /* Classe actions - define as caracteristicas do parágrafo das ações */
+        .actions p {
+            font-size: 12px;
+            text-align: center;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+            border-radius: 4px;
+            padding: 4px;
+            background-color: rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Classe actions - define as caracteristicas do parágrafo das ações, ao passar o mouse */
+        .actions p:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Classe buttons - define as caracteristicas dos botões */
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin: 5px;
+            padding: 2px;
+        }
+    </style>
+</head>
 
 <body>
-    <h1>
-        teste
-    </h1>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="conteiner">
+            <div class="card">
+                <div class="image">
+                    <img src="static\Bart_Simpson_200px.png" />
+                </div>
+                <div class="content">
+                    <p>Conteúdo</p>
+                </div>
+                <div class="actions">
+                    <div class="buttons">
+                        <p><a href="#">#1</a></p>
+                        <p><a href="#">#2</a></p>
+                        <p><a href="#">#3</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image">
+                    <img src="static\logo-invertido-metal-2.png" />
+                </div>
+                <div class="content">
+                    <p>Conteúdo</p>
+                </div>
+                <div class="actions">
+                    <div class="buttons">
+                        <p><a href="#">#1</a></p>
+                        <p><a href="#">#2</a></p>
+                        <p><a href="#">#3</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image">
+                    <img src="static\homer.jpg" />
+                </div>
+                <div class="content">
+                    <p>Conteúdo</p>
+                </div>
+                <div class="actions">
+                    <div class="buttons">
+                        <p><a href="#">#1</a></p>
+                        <p><a href="#">#2</a></p>
+                        <p><a href="#">#3</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Profº Marcio Denadai - SENAI "Dr. Celso Charuri"</p>
+    </footer>
 </body>
 
 </html>
