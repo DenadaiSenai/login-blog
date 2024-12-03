@@ -14,6 +14,7 @@
             padding: 0;
             margin: 0;
             /* border: 1px solid black; */
+            font-size: 1rem;
         }
 
         header,
@@ -51,6 +52,16 @@
             margin: 10px;
         }
 
+        .navleft {
+            width:80%;
+            border-radius: 10px;
+        }
+
+        .navright {
+            width: 20%;
+            border-radius: 10px;
+        }
+
         /* Classe principal */
         .conteiner {
             display: flex;
@@ -66,7 +77,7 @@
             background-color: rgba(112, 87, 87, 0.268);
             margin: 10px;
             border-radius: 20px;
-            box-shadow: 2px 2px 30px rgba(14, 82, 68, 0.681);
+            box-shadow: 2px 2px 30px rgba(87, 117, 111, 0.681);
             min-width: 200px;
             overflow: hidden;
             /* padding: 5px; */
@@ -88,6 +99,13 @@
             border-radius: 20px;
         }
 
+        .image img:hover {
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
         /* Classe content - define as caracteristicas do conteiner do conteudo */
         .content {
             /* width: 30em; */
@@ -102,7 +120,7 @@
 
         /* Classe content - define as caracteristicas do conteudo */
         .content p {
-            font-size: 24px;
+            font-size: 1.5rem;
             text-align: center;
             box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
             border-radius: 4px;
@@ -110,6 +128,9 @@
             background-color: rgba(0, 0, 0, 0.1);
             width: 100%;
             height: 100%;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed black;
         }
 
         /* Classe content - define as caracteristicas do parágrafo do conteudo, ao passar o mouse */
@@ -121,7 +142,7 @@
         .actions {
             width: 100%;
             /* height: 100%; */
-            background-color: rgba(255, 255, 0, 0.376);
+            background-color: rgba(98, 148, 224, 0.376);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -153,16 +174,23 @@
             margin: 5px;
             padding: 2px;
         }
+
+        
     </style>
 </head>
 
 <body>
     <header>
-        <nav>
+        <nav class="navleft">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Contato</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">Sobre</a></li>
+                <li class="active"><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+        <nav class="navright">
+            <ul>
+                <li><a href="#">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -173,7 +201,7 @@
                     <img src="static\Bart_Simpson_200px.png" />
                 </div>
                 <div class="content">
-                    <p>Conteúdo</p>
+                    <p>Bart Bart_Simpson</p>
                 </div>
                 <div class="actions">
                     <div class="buttons">
@@ -188,7 +216,7 @@
                     <img src="static\logo-invertido-metal-2.png" />
                 </div>
                 <div class="content">
-                    <p>Conteúdo</p>
+                    <p>Logo Invertido Metal 2</p>
                 </div>
                 <div class="actions">
                     <div class="buttons">
@@ -203,7 +231,7 @@
                     <img src="static\homer.jpg" />
                 </div>
                 <div class="content">
-                    <p>Conteúdo</p>
+                    <p>Hommer Simpson</p>
                 </div>
                 <div class="actions">
                     <div class="buttons">
